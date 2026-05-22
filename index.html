@@ -65,9 +65,8 @@ ul.chapters { list-style: none; padding: 8px 0; }
     </header>
     <div class="voice-toggle">
       <span class="label">配音</span>
-      <button data-voice="小朱">小朱</button>
       <button data-voice="錫安">錫安</button>
-      <button data-voice="錫安-talking">錫安+武安候</button>
+      <button data-voice="小朱">小朱</button>
     </div>
     <ul class="chapters" id="chapters"></ul>
   </aside>
@@ -107,7 +106,7 @@ const $prev = document.getElementById('btn-prev');
 const $next = document.getElementById('btn-next');
 const voiceBtns = document.querySelectorAll('.voice-toggle button');
 
-let voice = localStorage.getItem('voice-kuai0') || '小朱';
+let voice = localStorage.getItem('voice-kuai0') || '錫安';
 let currentIdx = -1;
 
 function el(tag, cls, text) {
