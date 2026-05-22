@@ -2,7 +2,7 @@
 <html lang="zh-TW">
 <head>
 <meta charset="UTF-8">
-<title>酷AI 第零章 — 三分鐘極速上手</title>
+<title>酷AI 自主學習與教學手冊 — 影片版</title>
 <style>
 :root {
   --bg: #F7FBFF;
@@ -60,13 +60,12 @@ ul.chapters { list-style: none; padding: 8px 0; }
 <div class="app">
   <aside class="sidebar">
     <header>
-      <h1>酷AI · 第零章</h1>
-      <div class="meta">三分鐘極速上手</div>
+      <h1>酷AI · 自主學習與教學手冊</h1>
+      <div class="meta">完整 5 章 · 影片版</div>
     </header>
-    <div class="voice-toggle">
+    <div class="voice-toggle" style="display:none">
       <span class="label">配音</span>
       <button data-voice="錫安">錫安</button>
-      <button data-voice="小朱">小朱</button>
     </div>
     <ul class="chapters" id="chapters"></ul>
   </aside>
@@ -85,18 +84,44 @@ ul.chapters { list-style: none; padding: 8px 0; }
 
 <script>
 const SEGMENTS = [
-  {id:'KuAI01-Intro', title:'開場 · 倒數計時', sec:'Intro', dur:20,
-   script:'歡迎來到酷AI 第零章 — 三分鐘極速上手指南。不想看說明書？這裡就是您的懶人包。'},
-  {id:'KuAI02-Login', title:'0.1 · 三十秒登入', sec:'0.1', dur:25,
-   script:'從酷課雲進入 → 單一身分驗證 → 點酷AI 圖示 → 進入系統。'},
-  {id:'KuAI03-FiveTools', title:'0.2 · 一分鐘認識五大神器', sec:'0.2', dur:62,
-   script:'AI小幫手、AI助教、AI寫作翻譯、AI口說圖檔、學習診斷儀。'},
-  {id:'KuAI04-ThreeMinDemo', title:'0.3 · 三分鐘做出 AI 教材', sec:'0.3', dur:54,
-   script:'第一分鐘進入課程、第二分鐘啟動 AI助教、第三分鐘預覽使用 — 完成第一份 AI 教材。'},
-  {id:'KuAI05-Help', title:'0.4 · 緊急求助專區', sec:'0.4', dur:40,
-   script:'常見狀況快速排解、客服 LINE / Email / 電話。'},
-  {id:'KuAI06-Outro', title:'結尾 · 歡迎進入', sec:'Outro', dur:9,
-   script:'歡迎進入酷AI 的世界。下一章開始啟用課程、讓學生開啟自學之旅吧。'},
+  // 第零章 · 三分鐘極速上手
+  {id:'KuAI01-Intro', title:'0 · 開場 · 倒數計時', sec:'Intro', dur:20, script:'歡迎來到酷AI 第零章 — 三分鐘極速上手指南。'},
+  {id:'KuAI02-Login', title:'0.1 · 三十秒登入', sec:'0.1', dur:25, script:'從酷課雲 → 單一身分驗證 → 點酷AI 圖示。'},
+  {id:'KuAI03-FiveTools', title:'0.2 · 五大神器', sec:'0.2', dur:62, script:'AI小幫手、AI助教、AI寫作翻譯、AI口說圖檔、學習診斷儀。'},
+  {id:'KuAI04-ThreeMinDemo', title:'0.3 · 三分鐘做出 AI 教材', sec:'0.3', dur:54, script:'三分鐘完成第一份 AI 教材。'},
+  {id:'KuAI05-Help', title:'0.4 · 緊急求助', sec:'0.4', dur:40, script:'常見狀況快速排解。'},
+  {id:'KuAI06-Outro', title:'0 · 結尾', sec:'Outro', dur:9, script:'歡迎進入酷AI 的世界。'},
+  // 第一章 · 課程設定不踩雷
+  {id:'KuAI11-MyCourse', title:'1.1 · 我的課程去哪了？', sec:'1.1', dur:65, script:'兩個檢查點找到您的課程。'},
+  {id:'KuAI12-CreateSOP', title:'1.2 · 手動創建課程 SOP', sec:'1.2', dur:101, script:'五個步驟、跟著做就會。'},
+  {id:'KuAI13-UnitPlan', title:'1.3 · 單元規劃黃金法則', sec:'1.3', dur:87, script:'引用出版社 / 自建單元 / 一週一單元法則。'},
+  {id:'KuAI14-TestStudent', title:'1.4 · 測試學生帳號', sec:'1.4', dur:91, script:'上課前的完美彩排。'},
+  {id:'KuAI15-Checklist', title:'1.5 · 本章技能檢核', sec:'1.5', dur:46, script:'五項技能檢核 + 四步行動。'},
+  // 第二章 · 上課模式與自學模式
+  {id:'KuAI21-ClassMode', title:'2.1 · 上課模式生命週期', sec:'2.1', dur:92, script:'4 個步驟、師生互動的生命週期。'},
+  {id:'KuAI22-SelfMode', title:'2.2 · 自學模式', sec:'2.2', dur:53, script:'何時用哪個模式 — 上課 vs 自學。'},
+  {id:'KuAI23-Package', title:'2.3 · 課程包製作與訂閱', sec:'2.3', dur:108, script:'AI 助教產生教材 → 打包 → 設定 → 學生訂閱。'},
+  {id:'KuAI24-ViewResult', title:'2.4 · 教師查看自學成果', sec:'2.4', dur:60, script:'學習歷程 + AI 分析 + 常見問題。'},
+  {id:'KuAI25-Checklist', title:'2.5 · 本章技能檢核', sec:'2.5', dur:44, script:'五項技能 + 四步行動。'},
+  // 第三章 · 5 分鐘實戰工作坊
+  {id:'KuAI31-AIWriting', title:'3.1 · AI 作文批改', sec:'3.1', dur:62, script:'解放老師的深夜時光。'},
+  {id:'KuAI32-AISpeak', title:'3.2 · AI 口說評測', sec:'3.2', dur:57, script:'英語發音小老師。'},
+  {id:'KuAI33-AIImage', title:'3.3 · AI 圖像辨識', sec:'3.3', dur:53, script:'自然觀察好輕鬆。'},
+  {id:'KuAI34-Scratch', title:'3.4 · Scratch 程式批改', sec:'3.4', dur:53, script:'資訊課救星。'},
+  {id:'KuAI35-Precise', title:'3.5 · 精準評量', sec:'3.5', dur:60, script:'3 級到 9 級的學習診斷。'},
+  {id:'KuAI36-Share', title:'3.6 · 課程包快速分享', sec:'3.6', dur:46, script:'打包分享三步驟。'},
+  {id:'KuAI37-Checklist', title:'3.7 · 本章技能檢核', sec:'3.7', dur:35, script:'六項技能 + 三步行動。'},
+  // 第四章 · Google 整合應用
+  {id:'KuAI41-BindGoogle', title:'4.1 · 綁定 Google 帳號', sec:'4.1', dur:51, script:'開啟所有服務的鑰匙。'},
+  {id:'KuAI42-Calendar', title:'4.2 · 日曆 — 班級行事曆', sec:'4.2', dur:44, script:'課程行事曆自動同步。'},
+  {id:'KuAI43-Gmail', title:'4.3 · Gmail — 教學溝通', sec:'4.3', dur:35, script:'與家長溝通零時差。'},
+  {id:'KuAI44-Drive', title:'4.4 · 雲端硬碟 — 檔案中心', sec:'4.4', dur:39, script:'學生作業檔案管理。'},
+  {id:'KuAI45-Docs', title:'4.5 · Google 文件 — 協作', sec:'4.5', dur:37, script:'多模式即時協作。'},
+  {id:'KuAI46-Classroom', title:'4.6 · Classroom — 課程管理', sec:'4.6', dur:34, script:'不換系統的無痛升級。'},
+  {id:'KuAI47-Gemini', title:'4.7 · Gemini — 助理升級', sec:'4.7', dur:33, script:'教學助理 2.0。'},
+  {id:'KuAI48-UseCases', title:'4.8 · 整合應用案例', sec:'4.8', dur:62, script:'三個跨工具實戰案例。'},
+  // 第五章 · 教學示例
+  {id:'KuAI50-Examples', title:'5 · 教師課程包與教學示例', sec:'CH5', dur:56, script:'30+ 個現成教學示例 · 直接套用。'},
 ];
 
 const $chapters = document.getElementById('chapters');
@@ -106,7 +131,7 @@ const $prev = document.getElementById('btn-prev');
 const $next = document.getElementById('btn-next');
 const voiceBtns = document.querySelectorAll('.voice-toggle button');
 
-let voice = localStorage.getItem('voice-kuai0') || '錫安';
+let voice = localStorage.getItem('voice-kuai') || '錫安';
 let currentIdx = -1;
 
 function el(tag, cls, text) {
@@ -159,7 +184,7 @@ updateVoiceUI();
 voiceBtns.forEach(b => b.addEventListener('click', () => {
   if (b.dataset.voice === voice) return;
   voice = b.dataset.voice;
-  localStorage.setItem('voice-kuai0', voice);
+  localStorage.setItem('voice-kuai', voice);
   updateVoiceUI();
   if (currentIdx >= 0) {
     const t = $video.currentTime;
